@@ -93,25 +93,6 @@ Panel kontrol untuk pengelolaan operasional bisnis:
     - **User Insights:** Melihat detail user spesifik (Total pengeluaran, riwayat order, pesan yang dikirim).
         
 6. **Admin Profile:** Pengaturan akun admin (Edit Nama, Telepon, dan Ganti Password).
-    
-
----
-
-## 📸 Screenshots
-
-_(Silakan upload screenshot aplikasi ke folder `public/screenshots` dan update link di bawah ini)_
-
-|**Home & Catalog**|**Product Detail**|
-|---|---|
-|||
-
-|**Cart & Tracking**|**Admin Dashboard**|
-|---|---|
-|||
-
-|**Order Management**|**User Insight**|
-|---|---|
-|||
 
 ---
 
@@ -191,6 +172,4 @@ Project ini memiliki batasan pengembangan (Project Scope) sebagai berikut:
 
 ---
 
-Developed by Nara
-
-Mahasiswa Program Studi Sistem Informasi / Teknik Informatika
+Developed by ZRFS Student of Information Systems
