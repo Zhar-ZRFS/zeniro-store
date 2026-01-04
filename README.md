@@ -1,59 +1,196 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ZENIRO Furniture Store
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**ZENIRO** adalah aplikasi web E-Commerce monolitik yang dirancang untuk mensimulasikan operasional bisnis furnitur modern. Aplikasi ini mencakup ekosistem lengkap mulai dari katalog produk, manajemen keranjang belanja, pelacakan pesanan, hingga panel administrasi yang komprehensif.
 
-## About Laravel
+Project ini dikembangkan sebagai pemenuhan **Tugas Besar (Final Project)** untuk dua mata kuliah sekaligus:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. **Pemrograman Web** (Frontend Focus)
+    
+2. **Pemrograman Back-End** (Backend Logic & Database)
+    
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🏗️ Development Lifecycle
 
-## Learning Laravel
+Project ini tidak dibangun secara instan, melainkan melalui tahapan rekayasa perangkat lunak yang terstruktur:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+1. **Requirement Gathering:** Penyusunan SRS (Software Requirement Specification).
+    
+2. **System Design:** Perancangan ERD (Entity Relationship Diagram) dan Use Case.
+    
+3. **UI/UX Design:** Prototyping antarmuka menggunakan **Figma**.
+    
+4. **Development:** Implementasi kode menggunakan Framework Laravel & Tailwind CSS.
+    
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 🚀 Tech Stack
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- **Backend Framework:** Laravel 10/11 (PHP 8.1+)
+    
+- **Frontend Styling:** Tailwind CSS
+    
+- **Interactivity:** Alpine.js (Lightweight JavaScript)
+    
+- **Database:** MySQL
+    
+- **Version Control:** Git & GitHub
+    
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## 🔥 Key Features
 
-## Contributing
+### 🛒 User Modules (Front-Office)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Fitur yang dapat diakses oleh pelanggan (Guest & Registered User):
 
-## Code of Conduct
+1. **Home & Company Profile:** Landing page informatif yang memuat profil perusahaan, layanan unggulan, ikhtisar katalog, dan formulir _Contact Us_ yang terhubung ke Admin.
+    
+2. **E-Commerce Catalog:** Halaman eksplorasi produk lengkap dengan fitur pencarian dan filter.
+    
+3. **Smart Cart & Checkout:**
+    
+    - Manajemen keranjang belanja (tambah/hapus item).
+        
+    - Kalkulasi harga otomatis (Subtotal, Diskon, Grand Total).
+        
+    - Checkout sederhana (Input Nama, Email, Telepon, Alamat).
+        
+4. **Product Detail:** Informasi mendalam mengenai spesifikasi produk dengan opsi _Add to Cart_ atau _Direct Purchase_.
+    
+5. **Order History (Auth Only):** Fitur khusus member untuk melihat riwayat belanja dan status pesanan terkini.
+    
+6. **Guest Order Tracking:** Fitur pelacakan pesanan untuk pengguna non-login menggunakan _Order Number_ dan _Email_.
+    
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 🛡️ Admin Modules (Back-Office)
 
-## Security Vulnerabilities
+Panel kontrol untuk pengelolaan operasional bisnis:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. **Executive Dashboard:**
+    
+    - Overview statistik real-time (Total Produk, Total Order, Pending Orders, Total Users).
+        
+    - Daftar order terbaru (Recent Orders).
+        
+    - Aksi cepat (Quick Actions).
+        
+2. **Product Management:** CRUD (Create, Read, Update, Delete) data produk furnitur.
+    
+3. **Order Management:** Memantau pesanan masuk dan mengubah status pesanan (_Pending -> Paid -> Shipped -> Completed/Cancelled_).
+    
+4. **Message Inbox:** Kotak masuk untuk pesan dari form _Contact Us_. Admin dapat menghapus pesan atau membalas via email (Direct `mailto`).
+    
+5. **User Management (CRM Sederhana):**
+    
+    - Memantau daftar pengguna aktif.
+        
+    - Menambah user baru & mengatur Role (Admin/User).
+        
+    - **User Insights:** Melihat detail user spesifik (Total pengeluaran, riwayat order, pesan yang dikirim).
+        
+6. **Admin Profile:** Pengaturan akun admin (Edit Nama, Telepon, dan Ganti Password).
+    
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 📸 Screenshots
+
+_(Silakan upload screenshot aplikasi ke folder `public/screenshots` dan update link di bawah ini)_
+
+|**Home & Catalog**|**Product Detail**|
+|---|---|
+|||
+
+|**Cart & Tracking**|**Admin Dashboard**|
+|---|---|
+|||
+
+|**Order Management**|**User Insight**|
+|---|---|
+|||
+
+---
+
+## 🛠️ Installation & Setup
+
+Ikuti langkah berikut untuk menjalankan project di komputer lokal:
+
+1. **Clone Repository**
+    
+    Bash
+    
+    ```
+    git clone https://github.com/USERNAME_LO/zeniro.git
+    cd zeniro
+    ```
+    
+2. **Install Dependencies**
+    
+    Bash
+    
+    ```
+    composer install
+    npm install && npm run build
+    ```
+    
+3. **Environment Setup**
+    
+    - Duplikasi file `.env.example` menjadi `.env`.
+        
+    - Sesuaikan konfigurasi database.
+        
+    
+    Bash
+    
+    ```
+    cp .env.example .env
+    php artisan key:generate
+    ```
+    
+4. **Database Migration & Seeding**
+    
+    Bash
+    
+    ```
+    php artisan migrate:fresh --seed
+    ```
+    
+5. **Link Storage (Wajib untuk Gambar Produk)**
+    
+    Bash
+    
+    ```
+    php artisan storage:link
+    ```
+    
+6. **Run Server**
+    
+    Bash
+    
+    ```
+    php artisan serve
+    ```
+    
+
+---
+
+## 📝 Project Limitations (Scope)
+
+Project ini memiliki batasan pengembangan (Project Scope) sebagai berikut:
+
+- **Pembayaran Manual:** Verifikasi pembayaran dilakukan secara manual oleh Admin (belum terintegrasi Payment Gateway).
+    
+- **Logistik:** Perhitungan ongkos kirim diasumsikan _flat rate_ atau ditangani di luar sistem.
+    
+- **Notifikasi:** Sistem notifikasi real-time (Email/WA) tidak diimplementasikan pada versi ini.
+    
+
+---
+
+Developed by Nara
+
+Mahasiswa Program Studi Sistem Informasi / Teknik Informatika
