@@ -4,7 +4,7 @@
 
 Project ini dikembangkan sebagai pemenuhan **Tugas Besar (Final Project)** untuk dua mata kuliah sekaligus:
 
-1. **Pemrograman Web** (Frontend Focus)
+1. **Pemrograman Web** (FrontEnd Focus and SRS Document)
     
 2. **Pemrograman Back-End** (Backend Logic & Database)
     
