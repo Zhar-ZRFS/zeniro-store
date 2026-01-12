@@ -15,9 +15,21 @@
         style="display: none;">
 
         <!-- User Info Section -->
-        <div class="px-4 py-3 border-b border-gray-200">
-            <p class="text-sm font-bold text-gray-800">{{ $user->name }}</p>
-            <p class="text-xs text-gray-500 mt-1">{{ $user->email }}</p>
+       <div class="px-4 py-3 border-b border-gray-200">
+            <div class="flex items-start justify-between gap-2">
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-bold text-gray-800 font-heading truncate">{{ $user->name }}</p>
+                    <p class="text-xs text-gray-500 mt-1 font-sans truncate">{{ $user->email }}</p>
+                </div>
+                <a href="{{ route('user.profile') }}" 
+                   class="flex-shrink-0 p-1.5 text-accent-blue hover:bg-accent-blue/10 rounded-lg transition" 
+                   title="Edit Profile">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                    </svg>
+                </a>
+            </div>
         </div>
 
         <!-- Logout Section -->

@@ -51,8 +51,8 @@
                     <label class="flex items-center gap-3 p-4 border-2 border-gray/30 rounded-xl cursor-pointer hover:border-accent-blue transition has-[:checked]:border-accent-blue has-[:checked]:bg-accent-blue/5">
                         <input type="radio" 
                                name="role" 
-                               value="member" 
-                               {{ old('role', 'member') === 'member' ? 'checked' : '' }}
+                               value="user" 
+                               {{ old('role', 'user') === 'user' ? 'checked' : '' }}
                                required
                                class="w-5 h-5 text-accent-blue">
                         <div>

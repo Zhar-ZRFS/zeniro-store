@@ -115,8 +115,8 @@
         </div>
     </section>
 
-    <section id="katalog" class="py-16 md:py-20 my-12 md:my-20 bg-white font-sans">
-        <div class="max-w-full md:max-w-322.5 mx-auto px-10 md:px-12">
+    <section id="katalog" class="py-12 md:py-20 my-12 md:my-20 bg-white font-sans">
+        <div class="max-w-full md:max-w-322.5 mx-auto px-10 md:px-24">
             <!-- Mobile Layout (1 column) -->
             <div class="md:hidden grid grid-cols-1 gap-4">
                 <div class="col-span-1 h-16 md:h-20 bg-accent-bluesoft rounded-[30px] flex items-center px-6 border border-primary-primaryBlue/5">
@@ -290,7 +290,7 @@
     <section id="kontak" class="py-20 md:py-24 flex items-center justify-center min-h-screen"
         style="background-color: #D7EBF7;">
 
-        <div class="w-[80%] mx-auto px-12">
+        <div class="w-full mx-auto px-24">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
 
                 <div class="bg-white rounded-[20px] p-8 md:p-12 shadow-xl">

@@ -312,9 +312,20 @@
                                             ${user.role_label}
                                         </span>
                                     </div>
-                                    <div class="text-right flex-shrink-0">
-                                        <p class="text-xs font-sans text-gray">Joined</p>
-                                        <p class="font-sans font-bold text-black text-xs">${user.joined_date}</p>
+                                    <div class="flex flex-col gap-2 text-right flex-shrink-0">
+                                        <div class="text-right flex-shrink-0">
+                                            <p class="text-xs font-sans text-gray">Joined</p>
+                                            <p class="font-sans font-bold text-black text-xs">${user.joined_date}</p>
+                                        </div>
+                                        <div class="text-right flex-shrink-0">
+                                            <p class="text-xs font-sans text-gray">Phone</p>
+                                                <div class="font-sans font-bold text-xs">
+                                                    ${user.phone 
+                                                        ? `<span class="text-black">${user.phone}</span>` 
+                                                        : `<span class="text-red-500 italic">Tidak ada Nomor</span>`
+                                                    }
+                                                </div>
+                                        </div>
                                     </div>
                                 </div>
                                     <hr class="border-gray/30">

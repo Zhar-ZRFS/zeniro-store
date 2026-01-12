@@ -38,7 +38,7 @@
     }" @scroll.window="handleScroll()" :class="visible ? 'translate-y-0' : '-translate-y-full'"
         class="fixed top-0 left-0 w-full z-50 transition-transform duration-500 ease-in-out bg-secondary shadow-md">
 
-        <div class="container mx-auto px-12 h-20 flex justify-between items-center">
+        <div class="container mx-auto h-20 flex justify-between items-center px-12 md:px-12 lg:px-24">
 
             <a href="{{ route('home') }}" class="flex items-center gap-2">
                 <div class="w-30 h-10 flex items-center">
@@ -104,6 +104,7 @@
                         x-transition:leave-end="opacity-0 -translate-y-2"
                         @click.away="serviceDropdownOpen = false"
                         class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 py-2">
+                        <a href="{{ route('cart.index') }}" class="block px-4 py-2 text-sm font-semibold text-primary-primaryBlue hover:bg-gray-50 font-heading  hover:text-accent-blue">My Cart</a>
                         <a href="{{ route('products.index') }}" class="block px-4 py-2 text-sm font-semibold text-primary-primaryBlue hover:bg-gray-50 font-heading  hover:text-accent-blue">E Commerce</a>
                         <a href="{{ route('track.order') }}" class="block px-4 py-2 text-sm font-semibold text-primary-primaryBlue hover:bg-gray-50 font-heading  hover:text-accent-blue">Track Order</a>
                     </div>
@@ -259,7 +260,11 @@
                         x-transition:leave="transition ease-in duration-150"
                         x-transition:leave-start="opacity-100 translate-y-0"
                         x-transition:leave-end="opacity-0 -translate-y-2"
-                        class="w-full text-secondary rounded-lg mt-1 py-1"> 
+                        class="w-full text-secondary rounded-lg mt-1 py-1"> <a href="{{ route('cart.index') }}" 
+                        class="block px-4 pl-8 py-2 text-sm font-semibold text-primary-primaryBlue hover:text-primary-primaryBlue/70 font-heading transition">
+                        My Cart
+                        </a>
+
                         <a href="{{ route('products.index') }}" 
                         class="block px-4 pl-8 py-2 text-sm font-semibold text-primary-primaryBlue hover:text-primary-primaryBlue/70 font-heading transition">
                         E Commerce
@@ -286,7 +291,7 @@
     </main>
 
     <footer class="bg-accent-bluesoft text-white pt-16 pb-8">
-        <div class="container mx-auto px-12">
+        <div class="container mx-auto px-4 px-12 md:px-12 lg:px-24">
 
             <div class="grid grid-cols-1 md:grid-cols-12 gap-y-8 md:gap-x-4 mb-16">
 
@@ -356,6 +361,9 @@
             </div>
         </div>
     </footer>
+
+    <!-- Floating Notification -->
+    <x-notification />
 
 </body>
 

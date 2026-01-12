@@ -102,7 +102,7 @@ class AdminUserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Password::min(8)],
-            'role' => 'required|in:admin,member',
+            'role' => 'required|in:admin,user',
             'phone' => 'nullable|string|max:20',
         ]);
 
@@ -111,7 +111,7 @@ class AdminUserController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role' => $validated['role'],
-            'phone' => $validated['phone'] ?? null,
+            'phone' => $validated['phone'],
         ]);
 
         return redirect()->route('admin.users.index')

@@ -42,10 +42,10 @@
                     <div class="absolute inset-0 bg-black/40"></div>
                     <div class="relative text-center text-white px-4 max-w-4xl z-10">
                         <h1 class="text-3xl md:text-5xl font-bold mb-4 font-heading">
-                            Koleksi Terbaru 2024
+                            Koleksi Terbaru 2026
                         </h1>
                         <p class="text-base md:text-l opacity-90 font-sans">
-                            Desain minimalis modern yang sempurna untuk ruang personal Anda
+                            Desain minimalis yang menenangkan untuk ruang pribadi Anda
                         </p>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                         class="px-6 py-2 rounded-full font-bold whitespace-nowrap transition-all font-sans {{ !$selectedCategory ? 'bg-primary-primaryPink text-white' : 'bg-accent-pink text-gray-700 hover:bg-pink-300' }}">
                         Semua Produk
                     </a>
-                    @foreach($categories as $category)
+                    @foreach($categories as $category)  
                         <a href="{{ route('products.index', ['category' => $category->slug]) }}"
                             class="px-6 py-2 rounded-full font-bold whitespace-nowrap transition-all font-sans {{ $selectedCategory === $category->slug ? 'bg-primary-primaryPink text-white' : 'bg-accent-pink text-gray-700 hover:bg-pink-300' }}">
                             {{ $category->name }}
@@ -110,17 +110,17 @@
                     Inspirasi untuk {{ $categoryName ? $categoryName->name : ucfirst(str_replace('-', ' ', $selectedCategory)) }} anda
                 </h2>
             @else
-                <h2 class="text-2xl font-bold mb-8 font-heading text-primary-primaryBlue">
+                <h2 class="text-3xl font-bold mb-8 font-heading text-primary-primaryBlue">
                     Semua Produk
                 </h2>
             @endif
 
-            <!-- Success/Error Messages -->
+            <!-- Success/Error Messages
             @if(session('success'))
                 <div class="mb-6 bg-green-50 border-l-4 border-green-500 p-4 rounded-md">
                     <p class="text-sm text-green-700 font-medium">{{ session('success') }}</p>
                 </div>
-            @endif
+            @endif -->
 
             @if(session('error'))
                 <div class="mb-6 bg-red-50 border-l-4 border-red-500 p-4 rounded-md">

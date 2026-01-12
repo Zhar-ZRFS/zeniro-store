@@ -14,7 +14,7 @@ use App\Http\Controllers\Admin\AdminMessageController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\TrackOrderController;
-
+use App\Http\Controllers\User\ProfileController;
 
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -59,6 +59,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders/detail/{id}', [OrderHistoryController::class, 'getDetail'])->name('orders.detail');
 });
 
+// User Profile Routes (Require Auth)
+Route::middleware(['auth'])->prefix('account')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('user.profile');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('user.profile.edit');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('user.profile.update');
+});
 
 // Admin Routes
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
