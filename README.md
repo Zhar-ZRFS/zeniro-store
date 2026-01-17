@@ -172,4 +172,4 @@ Project ini memiliki batasan pengembangan (Project Scope) sebagai berikut:
 
 ---
 
-Developed by ZRFS Student of Information Systems
+Developed by **ZRFS - Zharfan Sondjaja** Student of Information Systems
