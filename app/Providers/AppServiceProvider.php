@@ -22,6 +22,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+         if ($this->app->environment('production')) {
+        \URL::forceScheme('https');
+        }
         View::composer('*', function ($view) {
             if (Auth::check()) {
                 $count = Cart::where('user_id', Auth::id())->sum('quantity');
