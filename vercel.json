@@ -1,12 +1,12 @@
 {
     "version": 2,
     "framework": null,
-    "buildCommand": "rm -rf public/img public/storage storage/logs bootstrap/cache node_modules vendor .git && composer install --no-dev && npm install",
     "functions": {
         "api/index.php": { 
             "runtime": "vercel-php@0.7.4",
             "memory": 3008,
-            "maxDuration": 30
+            "maxDuration": 30,
+            "excludeFiles": "{**/*.log,node_modules/**,vendor/**,.git/**,public/img/**,storage/**,bootstrap/cache/**,resources/**,tests/**}"
         }
     },
     "routes": [
