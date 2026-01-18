@@ -36,10 +36,21 @@
             <div class="bg-white rounded-2xl p-6">
                 <div class="flex items-center justify-between mb-4">
                     <div class="flex items-center gap-4">
-                        <span class="px-3 py-1 {{ $order->status_color }} rounded-full text-xs font-sans font-bold">
-                            {{ $order->status_label }}
-                        </span>
                         <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="px-3 py-1 {{ $order->status_color }} rounded-full text-xs font-sans font-bold">
+                                    {{ $order->status_label }}
+                                </span>
+                                @if($order->user_id)
+                                    <span class="inline-block px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-sans font-bold">
+                                        Registered User
+                                    </span>
+                                @else
+                                    <span class="inline-block px-2 py-1 bg-gray/20 text-gray rounded text-xs font-sans font-bold">
+                                        Guest
+                                    </span>
+                                @endif
+                            </div>
                             <p class="font-sans font-bold text-black">Order {{ $order->order_number }}</p>
                             <p class="text-sm font-sans text-gray">
                                 {{ $order->created_at->format('M d, Y') }} • 
@@ -273,7 +284,12 @@ function renderOrderDetail(order) {
 
             <!-- Customer Info -->
             <div class="bg-secondary rounded-lg p-3">
-                <h3 class="text-sm font-heading font-bold text-primary-primaryBlue mb-2">Customer Information</h3>
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-sm font-heading font-bold text-primary-primaryBlue">Customer Information</h3>
+                    ${order.user_id 
+                        ? '<span class="inline-block px-2 py-0.5 bg-green-100 text-green-800 rounded-full text-xs font-sans font-bold">Registered User</span>'
+                        : '<span class="inline-block px-2 py-0.5 bg-gray-200 text-gray-700 rounded-full text-xs font-sans font-bold">Guest</span>'}
+                </div>
                 <div class="grid grid-cols-2 gap-2">
                     <div>
                         <p class="text-xs font-sans text-gray mb-0.5">Name</p>
