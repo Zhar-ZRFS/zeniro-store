@@ -26,6 +26,14 @@ export default {
         white: '#FAFAFA',      // Putih agak abu dikit (soft)
         gray: '#AEAEAE',
         black: '#121212',
+        
+        // Warna Merah Custom
+        danger: {
+          50: '#F5E8E8',
+          500: '#D55858',
+          600: '#C24141',
+          700: '#9E3535',
+        },
       },
       fontFamily: {
         // Font Lato untuk body/paragraf (set sebagai default sans)

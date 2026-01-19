@@ -78,9 +78,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     // Products
     Route::resource('products', AdminProductController::class);
 
-    Route::get('/products/create', [AdminProductController::class, 'create'])->name('products.create');
-    Route::get('/products/{product}/edit', [AdminProductController::class, 'edit'])->name('products.edit');
-    Route::put('/products/{product}', [AdminProductController::class, 'update'])->name('products.update');
+    // Route::get('/products/create', [AdminProductController::class, 'create'])->name('products.create');
+    // Route::get('/products/{product}/edit', [AdminProductController::class, 'edit'])->name('products.edit');
+    // Route::put('/products/{product}', [AdminProductController::class, 'update'])->name('products.update');
 
     // Orders
     Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
@@ -89,9 +89,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
 
     // Messages
     Route::resource('messages', AdminMessageController::class);
-    Route::get('/messages', [AdminMessageController::class, 'index'])->name('messages.index');
-    Route::get('/messages/{id}', [AdminMessageController::class, 'show'])->name('messages.show');
-    Route::delete('/messages/{id}', [AdminMessageController::class, 'destroy'])->name('messages.destroy');
+    // Route::get('/messages', [AdminMessageController::class, 'index'])->name('messages.index');
+    // Route::get('/messages/{id}', [AdminMessageController::class, 'show'])->name('messages.show');
+    // Route::delete('/messages/{id}', [AdminMessageController::class, 'destroy'])->name('messages.destroy');
 
     // Users
     Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');

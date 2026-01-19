@@ -58,13 +58,13 @@
 
                 <div>
                     <label class="block text-sm font-sans font-bold text-primary-primaryBlue mb-2">
-                        Name <span class="text-red-500">*</span>
+                        Name <span class="text-danger-500">*</span>
                     </label>
                     <input type="text" 
                            name="name" 
                            value="{{ old('name', $user->name) }}" 
                            required
-                           class="w-full px-4 py-3 rounded-xl border border-gray/30 focus:outline-none focus:ring-2 focus:ring-accent-blue font-sans @error('name') border-red-500 @enderror">
+                           class="w-full px-4 py-3 rounded-xl border border-gray/30 focus:outline-none focus:ring-2 focus:ring-accent-blue font-sans @error('name') border-danger-500 @enderror">
                     @error('name')
                         <p class="text-red-500 text-sm mt-1 font-sans">{{ $message }}</p>
                     @enderror
@@ -85,9 +85,9 @@
                            name="phone" 
                            value="{{ old('phone', $user->phone) }}"
                            placeholder="+62 812-3456-7890"
-                           class="w-full px-4 py-3 rounded-xl border border-gray/30 focus:outline-none focus:ring-2 focus:ring-accent-blue font-sans @error('phone') border-red-500 @enderror">
+                           class="w-full px-4 py-3 rounded-xl border border-gray/30 focus:outline-none focus:ring-2 focus:ring-accent-blue font-sans @error('phone') border-danger-500 @enderror">
                     @error('phone')
-                        <p class="text-red-500 text-sm mt-1 font-sans">{{ $message }}</p>
+                        <p class="text-danger-500 text-sm mt-1 font-sans">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -108,7 +108,7 @@
     <!-- Change Password -->
     <div class="bg-white rounded-2xl p-8 mt-6">
         <div class="flex items-center gap-3 mb-6">
-            <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 text-danger-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
             </svg>
             <h3 class="text-xl font-heading font-bold text-primary-primaryBlue">Change Password</h3>
@@ -120,34 +120,34 @@
 
             <div>
                 <label class="block text-sm font-sans font-bold text-primary-primaryBlue mb-2">
-                    Current Password <span class="text-red-500">*</span>
+                    Current Password <span class="text-danger-500">*</span>
                 </label>
                 <input type="password" 
                        name="current_password" 
                        required
-                       class="w-full px-4 py-3 rounded-xl border border-gray/30 focus:outline-none focus:ring-2 focus:ring-accent-blue font-sans @error('current_password') border-red-500 @enderror">
+                       class="w-full px-4 py-3 rounded-xl border border-gray/30 focus:outline-none focus:ring-2 focus:ring-accent-blue font-sans @error('current_password') border-danger-500 @enderror">
                 @error('current_password')
-                    <p class="text-red-500 text-sm mt-1 font-sans">{{ $message }}</p>
+                    <p class="text-danger-500 text-sm mt-1 font-sans">{{ $message }}</p>
                 @enderror
             </div>
 
             <div>
                 <label class="block text-sm font-sans font-bold text-primary-primaryBlue mb-2">
-                    New Password <span class="text-red-500">*</span>
+                    New Password <span class="text-danger-500">*</span>
                 </label>
                 <input type="password" 
                        name="password" 
                        required
-                       class="w-full px-4 py-3 rounded-xl border border-gray/30 focus:outline-none focus:ring-2 focus:ring-accent-blue font-sans @error('password') border-red-500 @enderror">
+                       class="w-full px-4 py-3 rounded-xl border border-gray/30 focus:outline-none focus:ring-2 focus:ring-accent-blue font-sans @error('password') border-danger-500 @enderror">
                 <p class="text-xs font-sans text-gray mt-1">Minimum 8 characters</p>
                 @error('password')
-                    <p class="text-red-500 text-sm mt-1 font-sans">{{ $message }}</p>
+                    <p class="text-danger-500 text-sm mt-1 font-sans">{{ $message }}</p>
                 @enderror
             </div>
 
             <div>
                 <label class="block text-sm font-sans font-bold text-primary-primaryBlue mb-2">
-                    Confirm New Password <span class="text-red-500">*</span>
+                    Confirm New Password <span class="text-danger-500">*</span>
                 </label>
                 <input type="password" 
                        name="password_confirmation" 
@@ -157,7 +157,7 @@
 
             <div class="pt-4 flex items-center gap-4">
                 <button type="submit" 
-                        class="px-8 py-3 bg-red-500 text-white rounded-xl hover:bg-red-600 transition font-sans font-bold flex items-center gap-2">
+                        class="px-8 py-3 bg-danger-500 text-white rounded-xl hover:bg-danger-600 transition font-sans font-bold flex items-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
                     </svg>
