@@ -58,7 +58,8 @@
 
     <!-- Products Table -->
     <div class="bg-white rounded-2xl overflow-hidden">
-        <table class="w-full">
+        <div class="overflow-x-auto">
+            <table class="w-full min-w-max">
             <thead class="bg-primary-primaryBlue">
                 <tr>
                     <th class="px-4 py-2.5 text-left text-sm font-heading font-bold text-white">Image</th>
@@ -170,24 +171,36 @@
                     </tr>
                 @endforelse
             </tbody>
-        </table>
+            </table>
+        </div>
     </div>
 
     <!-- Pagination -->
     @if($products->hasPages())
-        <div class="flex items-center justify-between bg-white rounded-2xl p-6">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-white rounded-2xl p-6">
             <p class="font-sans text-gray text-sm">
-                Showing {{ $products->firstItem() }} to {{ $products->lastItem() }} of {{ $products->total() }} products
+                <span class="hidden md:inline">Showing {{ $products->firstItem() }} to {{ $products->lastItem() }} of {{ $products->total() }} products</span>
+                <span class="md:hidden">{{ $products->firstItem() }}-{{ $products->lastItem() }} of {{ $products->total() }}</span>
             </p>
             <div class="flex items-center gap-2">
                 @if ($products->onFirstPage())
                     <span class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray cursor-not-allowed">
-                        Previous
+                        <span class="hidden md:inline">Previous</span>
+                            <span class="md:hidden">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                </svg>
+                            </span>
                     </span>
                 @else
                     <a href="{{ $products->appends(request()->except('page'))->previousPageUrl() }}" 
-                       class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray hover:bg-white transition">
-                        Previous
+                       class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray hover:bg-gray/10 transition">
+                            <span class="hidden md:inline">Previous</span>
+                            <span class="md:hidden">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                </svg>
+                            </span>
                     </a>
                 @endif
 
@@ -196,7 +209,7 @@
                         <span class="px-4 py-2 bg-accent-blue text-white rounded-lg font-sans font-bold">{{ $page }}</span>
                     @else
                         <a href="{{ $products->appends(request()->except('page'))->url($page) }}" 
-                           class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray hover:bg-white transition">
+                           class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray hover:bg-gray/10 transition">
                             {{ $page }}
                         </a>
                     @endif
@@ -204,12 +217,22 @@
 
                 @if ($products->hasMorePages())
                     <a href="{{ $products->appends(request()->except('page'))->nextPageUrl() }}" 
-                       class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray hover:bg-white transition">
-                        Next
+                       class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray hover:bg-gray/10 transition">
+                            <span class="hidden md:inline">Next</span>
+                            <span class="md:hidden">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </span>
                     </a>
                 @else
                     <span class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray cursor-not-allowed">
-                        Next
+                        <span class="hidden md:inline">Next</span>
+                            <span class="md:hidden">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </span>
                     </span>
                 @endif
             </div>
