@@ -305,24 +305,6 @@
                         </p>
                     </div>
 
-                    @if(session('success'))
-                        <div class="mb-6 bg-green-50 border-l-4 border-green-500 p-4 rounded-md">
-                            <div class="flex items-center">
-                                <p class="text-sm text-green-700 font-medium">{{ session('success') }}</p>
-                            </div>
-                        </div>
-                    @endif
-
-                    @if($errors->any())
-                        <div class="mb-6 bg-red-50 border-l-4 border-red-500 p-4 rounded-md">
-                            <ul class="text-sm text-red-700">
-                                @foreach($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
                     <form action="{{ route('contact.zeniro') }}" method="POST" class="space-y-2">
                         @csrf
 

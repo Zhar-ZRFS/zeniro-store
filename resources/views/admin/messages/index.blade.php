@@ -107,13 +107,13 @@
         @if($messages->hasPages())
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-white rounded-2xl p-6">
                 <p class="font-sans text-gray text-sm">
-                    <span class="hidden md:inline">Showing {{ $messages->firstItem() }} to {{ $messages->lastItem() }} of {{ $messages->total() }} messages</span>
+                    <span class="hidden md:block">Showing {{ $messages->firstItem() }} to {{ $messages->lastItem() }} of {{ $messages->total() }} messages</span>
                     <span class="md:hidden">{{ $messages->firstItem() }}-{{ $messages->lastItem() }} of {{ $messages->total() }}</span>
                 </p>
                 <div class="flex items-center gap-2">
                     @if ($messages->onFirstPage())
                         <span class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray cursor-not-allowed">
-                            <span class="hidden md:inline">Previous</span>
+                            <span class="hidden md:block">Previous</span>
                             <span class="md:hidden">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -123,7 +123,7 @@
                     @else
                         <a href="{{ $messages->previousPageUrl() }}"
                             class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray hover:bg-gray/10 transition">
-                            <span class="hidden md:inline">Previous</span>
+                            <span class="hidden md:block">Previous</span>
                             <span class="md:hidden">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -146,7 +146,7 @@
                     @if ($messages->hasMorePages())
                         <a href="{{ $messages->nextPageUrl() }}"
                             class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray hover:bg-gray/10 transition">
-                            <span class="hidden md:inline">Next</span>
+                            <span class="hidden md:block">Next</span>
                             <span class="md:hidden">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -155,7 +155,7 @@
                         </a>
                     @else
                         <span class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray cursor-not-allowed">
-                            <span class="hidden md:inline">Next</span>
+                            <span class="hidden md:block">Next</span>
                             <span class="md:hidden">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>

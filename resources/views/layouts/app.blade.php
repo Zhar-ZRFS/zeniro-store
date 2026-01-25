@@ -1,416 +1,420 @@
-<!DOCTYPE html>
-<html lang="id">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Zeniro Website')</title>
+@section('title', 'Company Profile - ZENIRO')
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;600;700;800&display=swap"
-        rel="stylesheet">
+@section('content')
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
 
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-</head>
+        <img src="{{ asset('img/asset/HeroSection.jpg') }}" alt="Hero Background Zeniro"
+            class="absolute inset-0 w-full h-full object-cover z-0">
 
-<body class="bg-white font-sans text-primary-primaryBlue flex flex-col min-h-screen">
+        <div class="absolute inset-0 bg-primary-primaryBlue/35 z-10"></div>
 
-    <nav x-data="{
-        visible: true,
-        mobileMenuOpen: false, // <-- WAJIB ADA DI SINI
-        searchOpen: false,
-        serviceDropdownOpen: false,
-        mobileServiceDropdownOpen: false,
-        timer: null,
-        handleScroll() {
-            this.visible = true;
-            clearTimeout(this.timer);
-            if (window.scrollY > 50) {
-                this.timer = setTimeout(() => {
-                    this.visible = false;
-                }, 5000); 
-            }
-        }
-    }" @scroll.window="handleScroll()" :class="visible ? 'translate-y-0' : '-translate-y-full'"
-        class="fixed top-0 left-0 w-full z-50 transition-transform duration-500 ease-in-out bg-secondary shadow-md">
+        <div class="relative z-20 bg-black/35 rounded-xl p-8 md:p-12 text-center text-white w-full max-w-137.5 mx-4">
 
-        <div class="container mx-auto h-20 flex justify-between items-center px-12 md:px-12 lg:px-24">
+            <h1 class="font-heading font-bold text-3xl md:text-4xl mb-4 drop-shadow-lg">
+                Welcome Home
+            </h1>
 
-            <a href="{{ route('home') }}" class="flex items-center gap-2">
-                <div class="w-30 h-10 flex items-center">
-                    <img src="{{ asset('img/logo/ZeniroBlueBlack.png') }}" alt="ZENIRO" class="h-full object-contain">
-                </div>
-            </a>
+            <p class="text-sm md:text-base leading-relaxed drop-shadow-md mx-auto">
+                ZENIRO mempersembahkan Personal Minimalism, menyelaraskan desain fungsional dan Zen yang hangat untuk menata
+                ketenangan di ruang pribadi Anda.
+            </p>
 
-            <div class="hidden md:flex space-x-10">
-                <a href="{{ route('home') }}"
-                    class="font-heading font-bold text-primary-primaryBlue hover:text-accent-blue transition">Home</a>
-                <a href="{{ route('home') }}#layanan"
-                    class="font-heading font-bold text-primary-primaryBlue hover:text-accent-blue transition">Layanan</a>
-                <a href="{{ route('home') }}#katalog"
-                    class="font-heading font-bold text-primary-primaryBlue hover:text-accent-blue transition">Furniture</a>
-                
-                <!-- Service Dropdown -->
-                @auth
-                <div class="relative group">
-                    <button @click="serviceDropdownOpen = !serviceDropdownOpen"
-                        class="font-heading font-bold text-primary-primaryBlue hover:text-accent-blue transition flex items-center gap-1">
-                        Store
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"
-                        class="w-4 h-4 transition-transform"
-                        :class="serviceDropdownOpen ? '' : 'rotate-180'">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-                        </svg>
+        </div>
+    </section>
+
+
+    <section id="layanan"
+        class="py-20 md:py-20 bg-primary-primaryBlue overflow-hidden relative h-screen flex items-center justify-center" x-data="{ 
+                                                                        open: false,
+                                                                        active: 'pengiriman',
+                                                                        services: {
+                                                                            'pengiriman': {
+                                                                                title: 'Pengiriman Cepat',
+                                                                                desc: 'Kecepatan adalah bentuk penghormatan kami terhadap waktu Anda. Nikmati sistem pengiriman yang presisi dan terjadwal, memastikan setiap kurasi ZENIRO tiba di ruang hunian Anda tanpa cela, tepat saat Anda membutuhkannya.',
+                                                                                icon: '{{ asset('img/icons/Pengiriman.png') }}'
+                                                                            },
+                                                                            'konsultasi': {
+                                                                                title: 'Home Decor Consultation',
+                                                                                desc: 'Ruang Anda adalah kanvas personal. Kami hadir untuk anda, dengean menyelaraskan visi Anda dan estetika ZENIRO, menciptakan harmoni antara fungsionalitas Zen dan kehangatan yang mewah melalui solusi tata ruang yang personal.',
+                                                                                icon: '{{ asset('img/icons/home.png') }}'
+                                                                            },
+                                                                            'online': {
+                                                                                title: 'Online Order 24/7',
+                                                                                desc: 'Akses tanpa batas menuju ketenangan. Platform digital kami tersedia sepenuhnya untuk melayani kurasi dan pesanan Anda kapan saja, memberikan kenyamanan berbelanja yang eksklusif dari genggaman Anda, setiap saat.',
+                                                                                icon: '{{ asset('img/icons/OnlineOrder.png') }}'
+                                                                            }
+                                                                        }
+                                                                    }">
+        <div class="container mx-auto px-12">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-24">
+
+                <div class="relative w-75 h-75 flex items-center justify-center shrink-0">
+
+                    <button @click="active = 'pengiriman'; open = false"
+                        class="absolute w-16 h-16 bg-accent-blue/70 rounded-full flex items-center justify-center shadow-lg transition-all duration-500 cubic-bezier(0.68, -0.55, 0.265, 1.55) z-30 border-2 border-primary-primaryBlue hover:bg-secondary"
+                        :class="open ? 'translate-x-35 -translate-y-20 scale-100 opacity-100' : 'translate-x-0 translate-y-0 scale-0 opacity-0'">
+                        <img src="{{ asset('img/icons/pengiriman.png') }}" alt="Gambar Truck"
+                            class="w-8 h-8 object-contain">
                     </button>
-                    
-                    <!-- Dropdown Menu -->
-                    <div x-show="serviceDropdownOpen"
-                        x-transition:enter="transition ease-out duration-200"
-                        x-transition:enter-start="opacity-0 -translate-y-2"
-                        x-transition:enter-end="opacity-100 translate-y-0"
-                        x-transition:leave="transition ease-in duration-150"
-                        x-transition:leave-start="opacity-100 translate-y-0"
-                        x-transition:leave-end="opacity-0 -translate-y-2"
-                        @click.away="serviceDropdownOpen = false"
-                        class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 py-2">
-                        <a href="{{ route('cart.index') }}" class="block px-4 py-2 text-sm font-semibold text-primary-primaryBlue hover:bg-gray-50 font-heading  hover:text-accent-blue">My Cart</a>
-                        <a href="{{ route('products.index') }}" class="block px-4 py-2 text-sm font-semibold text-primary-primaryBlue hover:bg-gray-50 font-heading  hover:text-accent-blue">E Commerce</a>
-                        <a href="{{ route('orders.history') }}" class="block px-4 py-2 text-sm font-semibold text-primary-primaryBlue hover:bg-gray-50 font-heading  hover:text-accent-blue">History</a>
+
+                    <button @click="active = 'konsultasi'; open = false"
+                        class="absolute w-16 h-16 bg-accent-blue/70 rounded-full flex items-center justify-center shadow-lg transition-all duration-500 cubic-bezier(0.68, -0.55, 0.265, 1.55) z-30 delay-75 border-2 border-primary-primaryBlue hover:bg-secondary"
+                        :class="open ? 'translate-x-42.5 translate-y-0 scale-100 opacity-100' : 'translate-x-0 translate-y-0 scale-0 opacity-0'">
+                        <img src="{{ asset('img/icons/home.png') }}" class="w-8 h-8 object-contain">
+                    </button>
+
+                    <button @click="active = 'online'; open = false"
+                        class="absolute w-16 h-16 bg-accent-blue/70 rounded-full flex items-center justify-center shadow-lg transition-all duration-500 cubic-bezier(0.68, -0.55, 0.265, 1.55) z-30 delay-150 border-2 border-primary-primaryBlue hover:bg-secondary"
+                        :class="open ? 'translate-x-35 translate-y-20 scale-100 opacity-100' : 'translate-x-0 translate-y-0 scale-0 opacity-0'">
+                        <img src="{{ asset('img/icons/OnlineOrder.png') }}" class="w-8 h-8 object-contain">
+                    </button>
+
+
+                    <button @click="open = !open"
+                        class="relative z-20 w-48 h-48 bg-white rounded-full shadow-2xl flex flex-col items-center justify-center transition-transform duration-300 hover:scale-105 active:scale-95 group">
+                        <img :src="services[active].icon" alt="Icon Layanan"
+                            class="w-24 h-24 object-contain transition-all duration-300 transform group-hover:-translate-y-1">
+                    </button>
+
+                    <div
+                        class="absolute inset-0 border-2 border-dashed border-accent-pink/20 rounded-full animate-spin-slow pointer-events-none scale-90">
                     </div>
                 </div>
-                @else
-                <div class="relative group">
-                    <button @click="serviceDropdownOpen = !serviceDropdownOpen"
-                        class="font-heading font-bold text-primary-primaryBlue hover:text-accent-blue transition flex items-center gap-1">
-                        Store
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"
-                        class="w-4 h-4 transition-transform"
-                        :class="serviceDropdownOpen ? '' : 'rotate-180'">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-                        </svg>
-                    </button>
-                    
-                    <!-- Dropdown Menu -->
-                    <div x-show="serviceDropdownOpen"
-                        x-transition:enter="transition ease-out duration-200"
-                        x-transition:enter-start="opacity-0 -translate-y-2"
-                        x-transition:enter-end="opacity-100 translate-y-0"
-                        x-transition:leave="transition ease-in duration-150"
-                        x-transition:leave-start="opacity-100 translate-y-0"
-                        x-transition:leave-end="opacity-0 -translate-y-2"
-                        @click.away="serviceDropdownOpen = false"
-                        class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 py-2">
-                        <a href="{{ route('cart.index') }}" class="block px-4 py-2 text-sm font-semibold text-primary-primaryBlue hover:bg-gray-50 font-heading  hover:text-accent-blue">My Cart</a>
-                        <a href="{{ route('products.index') }}" class="block px-4 py-2 text-sm font-semibold text-primary-primaryBlue hover:bg-gray-50 font-heading  hover:text-accent-blue">E Commerce</a>
-                        <a href="{{ route('track.order') }}" class="block px-4 py-2 text-sm font-semibold text-primary-primaryBlue hover:bg-gray-50 font-heading  hover:text-accent-blue">Track Order</a>
+
+
+                <div class="text-white max-w-lg transition-opacity duration-300"
+                    x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-x-4"
+                    x-transition:enter-end="opacity-100 translate-x-0" :key="active">
+                    <h3 class="font-heading font-bold text-3xl md:text-5xl mb-6" x-text="services[active].title"></h3>
+                    <p class="text-lg leading-relaxed opacity-90 text-justify" x-text="services[active].desc"></p>
+
+                    <div class="flex gap-2 mt-8">
+
+                        <button @click="active = 'pengiriman'"
+                            class="w-3 h-3 rounded-full transition-colors duration-300 focus:outline-none"
+                            :class="active === 'pengiriman' ? 'bg-accent-blue scale-125' : 'bg-white/20 hover:bg-white/50 cursor-pointer'"
+                            aria-label="Pilih Pengiriman"></button>
+
+                        <button @click="active = 'konsultasi'"
+                            class="w-3 h-3 rounded-full transition-colors duration-300 focus:outline-none"
+                            :class="active === 'konsultasi' ? 'bg-accent-blue scale-125' : 'bg-white/20 hover:bg-white/50 cursor-pointer'"
+                            aria-label="Pilih Konsultasi"></button>
+
+                        <button @click="active = 'online'"
+                            class="w-3 h-3 rounded-full transition-colors duration-300 focus:outline-none"
+                            :class="active === 'online' ? 'bg-accent-blue scale-125' : 'bg-white/20 hover:bg-white/50 cursor-pointer'"
+                            aria-label="Pilih Online Order"></button>
+
                     </div>
                 </div>
-                @endauth
-                
-                <a href="{{ route('home') }}#kontak"
-                    class="font-heading font-bold text-primary-primaryBlue hover:text-accent-blue transition">Contact
-                    Us</a>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="katalog" class="py-12 md:py-20 my-12 bg-white font-sans">
+        <div class="max-w-full md:max-w-322.5 mx-auto px-6 md:px-24">
+            <!-- Mobile Layout (1 column) -->
+            <div class="md:hidden grid grid-cols-1 gap-4">
+                <div class="col-span-1 h-16 md:h-20 bg-accent-bluesoft rounded-[30px] flex items-center px-6 border border-primary-primaryBlue/5">
+                    <h2 class="font-heading text-xl md:text-2xl font-bold text-primary-primaryBlue tracking-tight">
+                        ZENIRO Collection
+                    </h2>
+                </div>
+
+                <a href="{{ route('products.index', ['category' => 'rumah-tangga']) }}"
+                    class="relative overflow-hidden rounded-[30px] group cursor-pointer transition-transform duration-300 hover:scale-[1.02] hover:shadow-2xl h-48">
+                    <img src="{{ asset('img/asset/FurnitureRumahTangga.jpg') }}"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        alt="Interior 1">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary-primaryBlue/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-6 left-6 text-white font-heading text-2xl font-bold opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                        Rumah Tangga
+                    </div>
+                </a>
+
+                <a href="{{ route('products.index', ['category' => 'dekorasi']) }}"
+                    class="relative overflow-hidden rounded-[30px] group cursor-pointer transition-transform duration-300 hover:scale-[1.02] hover:shadow-2xl h-48">
+                    <img src="{{ asset('img/asset/FurnitureDecoration.jpg') }}"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        alt="Interior 2">
+                    <div class="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-6 left-6 text-white font-heading text-2xl font-bold opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                        Decoration
+                    </div>
+                </a>
+
+                <div class="bg-accent-pink p-5 rounded-[30px] flex flex-col justify-center border border-primary-primaryPink/20 transition-all hover:shadow-md">
+                    <h3 class="font-heading font-bold text-primary-primaryBlue mb-2">Decoration</h3>
+                    <p class="text-sm text-black/70 leading-relaxed">Handpicked furniture for your soul.</p>
+                </div>
+
+                <a href="{{ route('products.index', ['category' => 'personal-room']) }}"
+                    class="relative overflow-hidden rounded-[30px] group cursor-pointer transition-transform duration-300 hover:scale-[1.02] h-48">
+                    <img src="{{ asset('img/asset/FurnitureRoom.jpg') }}"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        alt="Interior 3">
+                    <div class="absolute inset-0 bg-linear-to-t from-primary-primaryBlue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-6 left-6 text-white font-heading text-2xl font-bold opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                        Personal Room
+                    </div>
+                </a>
+
+                <div class="bg-secondary p-5 rounded-[30px] flex flex-col justify-center border border-accent-blue/10 ">
+                    <h3 class="font-heading font-bold text-primary-primaryBlue mb-2">Minimalist</h3>
+                    <p class="text-sm text-black/70 leading-relaxed">Less is more, but excellence is mandatory.</p>
+                </div>
+
+                <a href="{{ route('products.index', ['category' => 'hobby']) }}"
+                    class="relative overflow-hidden rounded-[30px] group cursor-pointer transition-transform duration-300 hover:scale-[1.02] h-48">
+                    <img src="{{ asset('img/asset/FurnitureHobby.jpg') }}"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        alt="Interior 4">
+                    <div class="absolute inset-0 bg-linear-to-t from-primary-primaryBlue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-6 left-6 text-white font-heading text-2xl font-bold opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                        Hobby
+                    </div>
+                </a>
+
+                <div class="bg-primary-primaryPink/20 p-4 rounded-[30px] flex flex-col justify-center border border-primary-primaryPink/30">
+                    <h3 class="font-heading font-bold text-primary-primaryBlue mb-2">Hobby</h3>
+                    <p class="text-sm text-black/70 leading-relaxed">Your comfort zone, redefined.</p>
+                </div>
+
+                <div class="bg-secondary p-5 rounded-[30px] flex flex-col justify-center border border-accent-blue/5">
+                    <h3 class="font-heading font-bold text-primary-primaryBlue mb-2">Private Room</h3>
+                    <p class="text-sm text-black/70 leading-relaxed">Enjoy with yourself.</p>
+                </div>
+
+                <a href="{{ route('products.index') }}"
+                    class="bg-primary-primaryBlue rounded-[20px] flex items-center justify-center text-white font-heading font-bold text-base uppercase tracking-[0.2em] transition-all duration-300 hover:bg-accent-blue py-3 active:scale-95 group">
+                    <span class="flex items-center gap-3">
+                        Discover
+                        <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </span>
+                </a>
             </div>
 
-            <div class="flex items-center gap-4" x-data="{ searchOpen: false }">
+            <!-- Desktop Layout (6 column grid) -->
+            <div class="hidden md:grid grid-cols-6 grid-rows-[repeat(16,minmax(50px,auto))] gap-[30px]">
 
-                @if(request()->routeIs('products.index'))
-                    <form action="{{ route('products.index') }}" method="GET" 
-                        class="hidden md:flex items-center rounded-full transition-all duration-300 ease-in-out overflow-hidden bg-transparent"
-                        :class="searchOpen ? 'w-40 px-2 border border-primary-primaryBlue' : 'w-10.5 justify-center px-0 border-transparent'"
-                        @click.away="searchOpen = false">
-
-                        <button type="button" @click="searchOpen = !searchOpen"
-                            class="w-8 h-8 flex items-center justify-center text-primary-primaryBlue focus:outline-none shrink-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor" stroke-width="2.5">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                        </button>
-
-                        <input type="text" 
-                            name="search" 
-                            value="{{ request('search') }}" 
-                            placeholder="Search..."
-                            class="w-full border-none outline-none bg-transparent text-sm text-primary-primaryBlue ml-2 font-heading font-medium placeholder-primary-primaryBlue/50 h-9"
-                            x-show="searchOpen" 
-                            x-transition:enter="transition ease-out duration-200"
-                            x-transition:enter-start="opacity-0 scale-90" 
-                            x-transition:enter-end="opacity-100 scale-100"
-                        >
-                    </form>
-                @endif
-
-
-                @auth
-                    <div class="hidden md:flex items-center gap-4">
-                        <div class="relative"> <x-profile-dropdown :user="auth()->user()" />
-                        
-                        @if(isset($cartCount) && $cartCount > 0)
-                        <span
-                        class="absolute -top-2 -right-1 bg-red-400 text-white text-[8px] font-bold rounded-full w-3 h-3 flex items-center justify-center border-1 border-white pointer-events-none">
-                        </span>
-                        @endif
-                    </div>
-                        @if(auth()->user()->role === 'admin')
-                            <a href="{{ route('admin.dashboard') }}"
-                                class="hidden md:block px-6 py-2 bg-accent-blue text-white rounded-lg font-bold hover:bg-accent-blue/90 transition text-sm">
-                                Go to Dashboard
-                            </a>
-                        @endif
-                    </div>
-                @else
-                    <div class="hidden md:flex items-center gap-3">
-                        <a href="{{ route('login') }}"
-                            class="w-20 h-10 flex items-center justify-center rounded-lg font-bold transition-all duration-300 border-2 border-primary-primaryBlue bg-primary-primaryBlue text-white hover:bg-transparent hover:text-primary-primaryBlue text-sm">
-                            Login
-                        </a>
-
-                        <a href="{{ route('register') }}"
-                            class="w-20 h-10 flex items-center justify-center rounded-lg font-bold transition-all duration-300 border-2 border-primary-primaryBlue bg-transparent text-primary-primaryBlue hover:bg-primary-primaryBlue hover:text-white text-sm">
-                            Sign Up
-                        </a>
-                    </div>
-                @endauth
-
-                <div class="md:hidden flex items-center">
-                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-primary-primaryBlue focus:outline-none">
-                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                            <path x-show="mobileMenuOpen" x-cloak stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
+                <div class="col-span-6 row-span-1 h-[80px] bg-accent-bluesoft rounded-[30px] flex items-center px-6 border border-primary-primaryBlue/5">
+                    <h2 class="font-heading text-2xl font-bold text-primary-primaryBlue tracking-tight">
+                        ZENIRO Collection for Your References
+                    </h2>
                 </div>
 
-                <div x-show="mobileMenuOpen" 
-                    x-transition:enter="transition ease-out duration-300"
-                    x-transition:enter-start="opacity-0 -translate-y-4"
-                    x-transition:enter-end="opacity-100 translate-y-0"
-                    x-transition:leave="transition ease-in duration-200"
-                    x-transition:leave-start="opacity-100 translate-y-0"
-                    x-transition:leave-end="opacity-0 -translate-y-4"
-                    class="lg:hidden absolute top-full left-0 w-full bg-secondary shadow-inner border-t border-gray-100 px-6 py-4 space-y-4"
-                    x-cloak>
-                    
-                    <a href="{{ route('home') }}" class="block font-heading font-bold text-primary-primaryBlue py-2">Home</a>
-                    <a href="{{ route('home') }}#layanan" class="block font-heading font-bold text-primary-primaryBlue py-2">Layanan</a>
-                    <a href="{{ route('home') }}#katalog" class="block font-heading font-bold text-primary-primaryBlue py-2">Furniture</a>
-                    
-                    <!-- Mobile Service Dropdown -->
-                    @auth
-                <div class="relative group">
-                    <button @click="serviceDropdownOpen = !serviceDropdownOpen"
-                        class="font-heading font-bold text-primary-primaryBlue hover:text-accent-blue transition flex items-center gap-1">
-                        Store
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"
-                        class="w-4 h-4 transition-transform"
-                        :class="serviceDropdownOpen ? '' : 'rotate-180'">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-                        </svg>
-                    </button>
-                    
-                    <!-- Dropdown Menu -->
-                    <div x-show="serviceDropdownOpen"
-                        x-transition:enter="transition ease-out duration-200"
-                        x-transition:enter-start="opacity-0 -translate-y-2"
-                        x-transition:enter-end="opacity-100 translate-y-0"
-                        x-transition:leave="transition ease-in duration-150"
-                        x-transition:leave-start="opacity-100 translate-y-0"
-                        x-transition:leave-end="opacity-0 -translate-y-2"
-                        class="w-full bg-secondary rounded-lg mt-1 py-1"> 
-                        <a href="{{ route('cart.index') }}" 
-                        class="block px-4 pl-8 py-2 text-sm font-semibold text-primary-primaryBlue hover:text-primary-primaryBlue/70 font-heading transition">
-                        My Cart
-                        </a>
-
-                        <a href="{{ route('products.index') }}" 
-                        class="block px-4 pl-8 py-2 text-sm font-semibold text-primary-primaryBlue hover:text-primary-primaryBlue/70 font-heading transition">
-                        E Commerce
-                        </a>
-
-                        <a href="{{ route('orders.history') }}" 
-                        class="block px-4 pl-8 py-2 text-sm font-semibold text-primary-primaryBlue hover:text-primary-primaryBlue/70 font-heading transition">
-                        History
-                        </a>
+                <a href="{{ route('products.index', ['category' => 'rumah-tangga']) }}"
+                    class="col-span-2 row-span-9 relative overflow-hidden rounded-[30px] group cursor-pointer transition-transform duration-300 hover:scale-[1.01] hover:shadow-2xl">
+                    <img src="{{ asset('img/asset/FurnitureRumahTangga.jpg') }}"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        alt="Interior 1">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary-primaryBlue/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-8 left-8 text-white font-heading text-3xl font-bold opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                        Rumah Tangga
                     </div>
-                </div>
-                @else
-                   
-                     <div class="relative group">
-                    <button @click="serviceDropdownOpen = !serviceDropdownOpen"
-                        class="font-heading font-bold text-primary-primaryBlue hover:text-accent-blue transition flex items-center gap-1">
-                        Store
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"
-                        class="w-4 h-4 transition-transform"
-                        :class="serviceDropdownOpen ? '' : 'rotate-180'">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-                        </svg>
-                    </button>
-                    
-                    <!-- Dropdown Menu -->
-                    <div x-show="serviceDropdownOpen"
-                        x-transition:enter="transition ease-out duration-200"
-                        x-transition:enter-start="opacity-0 -translate-y-2"
-                        x-transition:enter-end="opacity-100 translate-y-0"
-                        x-transition:leave="transition ease-in duration-150"
-                        x-transition:leave-start="opacity-100 translate-y-0"
-                        x-transition:leave-end="opacity-0 -translate-y-2"
-                        class="w-full text-secondary rounded-lg mt-1 py-1"> <a href="{{ route('cart.index') }}" 
-                        class="block px-4 pl-8 py-2 text-sm font-semibold text-primary-primaryBlue hover:text-primary-primaryBlue/70 font-heading transition">
-                        My Cart
-                        </a>
+                </a>
 
-                        <a href="{{ route('products.index') }}" 
-                        class="block px-4 pl-8 py-2 text-sm font-semibold text-primary-primaryBlue hover:text-primary-primaryBlue/70 font-heading transition">
-                        E Commerce
-                        </a>
-
-                        <a href="{{ route('track.order') }}" 
-                        class="block px-4 pl-8 py-2 text-sm font-semibold text-primary-primaryBlue hover:text-primary-primaryBlue/70  font-heading transition">
-                        Track Order
-                        </a>
+                <a href="{{ route('products.index', ['category' => 'dekorasi']) }}"
+                    class="col-span-2 row-span-6 relative overflow-hidden rounded-[30px] group cursor-pointer transition-transform duration-300 hover:scale-[1.02] hover:shadow-2xl">
+                    <img src="{{ asset('img/asset/FurnitureDecoration.jpg') }}"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        alt="Interior 2">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-8 left-8 text-white font-heading text-3xl font-bold opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                        Decoration
                     </div>
-                </div>
-                @endauth
-                    
-                    <a href="{{ route('home') }}#kontak" class="block font-heading font-bold text-primary-primaryBlue py-2">Contact Us</a>
+                </a>
 
-                    <!-- Mobile Auth Section -->
-                    <div class="border-t border-gray-300 pt-4 mt-4">
-                        @auth
-                            <div class="space-y-3">
-                                <div class="px-2 py-2 flex items-center justify-between">
-                                    <div>
-                                        <p class="font-heading font-bold text-primary-primaryBlue text-sm">{{ auth()->user()->name }}</p>
-                                        <p class="text-xs text-primary-primaryBlue/60">{{ auth()->user()->email }}</p>
-                                    </div>
-                                    <a href="{{ route('user.profile') }}" 
-                                       class="flex-shrink-0 p-1.5 text-accent-blue hover:bg-accent-blue/10 rounded-lg transition" 
-                                       title="Edit Profile">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                                                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                                        </svg>
-                                    </a>
-                                </div>
-                                @if(auth()->user()->role === 'admin')
-                                    <a href="{{ route('admin.dashboard') }}"
-                                        class="block w-full px-4 py-2 bg-accent-blue text-white rounded-lg font-bold hover:bg-accent-blue/90 transition text-sm text-center">
-                                        Go to Dashboard
-                                    </a>
-                                @endif
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="w-full px-4 py-2 border-2 border-primary-primaryBlue text-primary-primaryBlue rounded-lg font-bold hover:bg-primary-primaryBlue hover:text-white transition text-sm">
-                                        Logout
-                                    </button>
-                                </form>
+                <div class="col-span-2 row-span-2 bg-accent-pink p-6 rounded-[30px] flex flex-col justify-center border border-primary-primaryPink/20 transition-all hover:shadow-md">
+                    <h3 class="font-heading font-bold text-primary-primaryBlue mb-2">Decoration</h3>
+                    <p class="text-sm text-black/70 leading-relaxed">Handpicked furniture for your soul.</p>
+                </div>
+
+                <a href="{{ route('products.index', ['category' => 'personal-room']) }}"
+                    class="col-span-2 row-span-8 relative overflow-hidden rounded-[30px] group cursor-pointer transition-transform duration-300 hover:scale-[1.01]">
+                    <img src="{{ asset('img/asset/FurnitureRoom.jpg') }}"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        alt="Interior 3">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary-primaryBlue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-8 left-8 text-white font-heading text-3xl font-bold opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                        Personal Room
+                    </div>
+                </a>
+
+                <div class="col-span-2 row-span-3 bg-secondary p-6 rounded-[30px] flex flex-col justify-center border border-accent-blue/10">
+                    <h3 class="font-heading font-bold text-primary-primaryBlue mb-2">Minimalist</h3>
+                    <p class="text-sm text-black/70 leading-relaxed">Less is more, but luxury is mandatory.</p>
+                </div>
+
+                <a href="{{ route('products.index', ['category' => 'hobby']) }}"
+                    class="col-span-3 row-span-5 relative overflow-hidden rounded-[30px] group cursor-pointer transition-transform duration-300 hover:scale-[1.01]">
+                    <img src="{{ asset('img/asset/FurnitureHobby.jpg') }}"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        alt="Interior 4">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary-primaryBlue/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute bottom-8 left-8 text-white font-heading text-3xl font-bold opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                        Hobby
+                    </div>
+                </a>
+
+                <div class="col-span-1 row-span-5 bg-primary-primaryPink/20 p-5 rounded-[30px] flex flex-col justify-center border border-primary-primaryPink/30">
+                    <h3 class="font-heading font-bold text-primary-primaryBlue mb-2">Hobby</h3>
+                    <p class="text-sm text-black/70 leading-relaxed">Your comfort zone, redefined.</p>
+                </div>
+
+                <div class="col-span-2 row-span-3 bg-secondary p-6 rounded-[30px] flex flex-col justify-center border border-accent-blue/5">
+                    <h3 class="font-heading font-bold text-primary-primaryBlue mb-2">Private Room</h3>
+                    <p class="text-sm text-black/70 leading-relaxed">Enjoy with yourself.</p>
+                </div>
+
+                <a href="{{ route('products.index') }}"
+                    class="col-span-2 row-span-1 bg-primary-primaryBlue rounded-[20px] flex items-center justify-center text-white font-heading font-bold text-base uppercase tracking-[0.2em] transition-all duration-300 hover:bg-accent-blue hover:shadow-[0_10px_30px_rgba(5,31,61,0.3)] hover:-translate-y-1 active:scale-95 group">
+                    <span class="flex items-center gap-3">
+                        Discover
+                        <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </span>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="kontak" class="py-20 md:py-24 flex items-center justify-center min-h-screen"
+        style="background-color: #D7EBF7;">
+
+        <div class="w-full mx-auto px-6 md:px-24">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+
+                <div class="bg-white rounded-[20px] p-8 md:p-12 shadow-xl">
+
+                    <div class="mb-8">
+                        <p class="font-bold text-sm uppercase tracking-wider mb-2" style="color: #305C8E;">Get in Touch</p>
+                        <h3 class="font-heading font-bold text-3xl md:text-4xl leading-tight" style="color: #305C8E;">
+                            Let us Know, What you think!
+                        </h3>
+                        <p class="mt-4 text-sm md:text-base opacity-80" style="color: #305C8E;">
+                            Punya kritik, masukan atau pertanyaan? Isi form ini, dan akan kami respon 1 kali 24 jam
+                        </p>
+                    </div>
+
+                    @if(session('success'))
+                        <div class="mb-6 bg-green-50 border-l-4 border-green-500 p-4 rounded-md">
+                            <div class="flex items-center">
+                                <p class="text-sm text-green-700 font-medium">{{ session('success') }}</p>
                             </div>
-                        @else
+                        </div>
+                    @endif
+
+                    @if($errors->any())
+                        <div class="mb-6 bg-red-50 border-l-4 border-red-500 p-4 rounded-md">
+                            <ul class="text-sm text-red-700">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form action="{{ route('contact.zeniro') }}" method="POST" class="space-y-2">
+                        @csrf
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="flex flex-col gap-2">
-                                <a href="{{ route('login') }}"
-                                    class="w-full h-10 flex items-center justify-center rounded-lg font-bold transition-all duration-300 border-2 border-primary-primaryBlue bg-primary-primaryBlue text-white hover:bg-transparent hover:text-primary-primaryBlue text-sm">
-                                    Login
-                                </a>
-
-                                <a href="{{ route('register') }}"
-                                    class="w-full h-10 flex items-center justify-center rounded-lg font-bold transition-all duration-300 border-2 border-primary-primaryBlue bg-transparent text-primary-primaryBlue hover:bg-primary-primaryBlue hover:text-white text-sm">
-                                    Sign Up
-                                </a>
+                                <label for="first_name" class="font-bold text-sm pl-2" style="color: #305C8E;">Nama
+                                    Depan</label>
+                                <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}"
+                                    required
+                                    class="w-full h-12 rounded-xl px-4 focus:outline-none focus:ring-2 focus:ring-[#305C8E]/50 transition"
+                                    style="background-color: #C1DAF2; color: #305C8E;">
                             </div>
-                        @endauth
+
+                            <div class="flex flex-col gap-2">
+                                <label for="last_name" class="font-bold text-sm pl-2" style="color: #305C8E;">Nama
+                                    Belakang</label>
+                                <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" required
+                                    class="w-full h-12 rounded-xl px-4 focus:outline-none focus:ring-2 focus:ring-[#305C8E]/50 transition"
+                                    style="background-color: #C1DAF2; color: #305C8E;">
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-2">
+                            <label for="email" class="font-bold text-sm pl-2" style="color: #305C8E;">Alamat Email</label>
+                            <input type="email" id="email" name="email" value="{{ old('email') }}" required
+                                class="w-full h-12 rounded-xl px-4 focus:outline-none focus:ring-2 focus:ring-[#305C8E]/50 transition"
+                                style="background-color: #C1DAF2; color: #305C8E;">
+                        </div>
+
+                        <div class="flex flex-col gap-2">
+                            <label for="message" class="font-bold text-sm pl-2" style="color: #305C8E;">Pesan</label>
+                            <textarea id="message" name="message" rows="5" required
+                                class="w-full rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-[#305C8E]/50 transition resize-none"
+                                style="background-color: #C1DAF2; color: #305C8E;">{{ old('message') }}</textarea>
+                        </div>
+
+                        <div class="flex justify-end pt-2">
+                            <button type="submit"
+                                class="px-10 py-3 rounded-xl font-bold text-white shadow-md hover:opacity-90 transition transform hover:scale-105 active:scale-95"
+                                style="background-color: #E8A9B1;">
+                                Kirim
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div class="flex flex-col h-full">
+
+                    <div class="flex-1 w-full rounded-[20px] overflow-hidden shadow-lg mb-6">
+                        <img src="{{ asset('img/asset/ContactUs.jpg') }}" alt="Contact Zeniro"
+                            class="w-full h-full object-cover">
                     </div>
 
+                    <div class="grid grid-cols-3 gap-4 md:gap-6">
+
+                        <a href="#"
+                            class="aspect-square rounded-2xl flex flex-col items-center justify-center gap-3 text-white hover:opacity-90 transition shadow-md group"
+                            style="background-color: #E8A9B1;">
+                            <div
+                                class="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition">
+                                <img src="{{ asset('img/icons/instagram.png') }}" class="w-6 h-6 object-contain">
+                            </div>
+                            <span class="hidden md:block text-[10px] md:text-xs font-bold text-center px-2">@zeniro.furniture</span>
+                        </a>
+
+                        <a href="#"
+                            class="aspect-square rounded-2xl flex flex-col items-center justify-center gap-3 text-white hover:opacity-90 transition shadow-md group"
+                            style="background-color: #E8A9B1;">
+                            <div
+                                class="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition">
+                                <img src="{{ asset('img/icons/youtube.png') }}" class="w-6 h-6 object-contain">
+                            </div>
+                            <span class="hidden md:block text-[10px] md:text-xs font-bold text-center px-2">Zeniro Official</span>
+                        </a>
+
+                        <a href="#"
+                            class="aspect-square rounded-2xl flex flex-col items-center justify-center gap-3 text-white hover:opacity-90 transition shadow-md group"
+                            style="background-color: #E8A9B1;">
+                            <div
+                                class="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-full flex items-center justify-center group-hover:scale-110 transition">
+                                <img src="{{ asset('img/icons/mail.png') }}" class="w-6 h-6 object-contain">
+                            </div>
+                            <span
+                                class="hidden md:block text-[10px] md:text-xs font-bold text-center px-2 break-all">hello@zeniro.com</span>
+                        </a>
+
+                    </div>
                 </div>
 
             </div>
         </div>
-    </nav>
+    </section>
 
-    <main class="grow pt-20">
-        @yield('content')
-    </main>
-
-    <footer class="bg-accent-bluesoft text-white pt-16 pb-8">
-        <div class="container mx-auto px-4 px-12 md:px-12 lg:px-24">
-
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-y-8 md:gap-x-4 mb-16">
-
-                <div class="md:col-span-4 flex flex-col justify-start">
-                    <div class="mb-4 w-62.5 h-12.5">
-                        <img src="{{ asset('img/logo/zeniroBlueBlack.png') }}" alt="ZENIRO"
-                            class="w-full object-contain">
-                    </div>
-                    <p class="font-bold text-lg mb-2">Where Simplicity Meets Warmth</p>
-                    <p class="text-sm leading-relaxed opacity-90 max-w-xs">
-                        Jl. Bahagia Selamanya Blok. G Kec. Cicilan Bandung Utara, Jawa Barat, Indonesia. Kode Pos 9475
-                    </p>
-                </div>
-
-                <div class="md:col-span-3 md:col-start-7">
-                    <p class="text-base leading-relaxed font-medium opacity-90 text-justify w-60">
-                        <span class="font-bold">ZENIRO</span> mempersembahkan keindahan minimalisme personal, menyelaraskan desain fungsional dan ketenangan yang nyaman bagi ruang hunian Anda.
-                    </p>
-                </div>
-
-                <div class="md:col-span-3 md:col-start-10 flex gap-12">
-
-                    <div>
-                        <h3 class="font-heading font-bold text-lg mb-4 w-25">About Us</h3>
-                        <ul class="space-y-2 text-sm">
-                            <li><a href="{{ route('home') }}" class="hover:underline opacity-90">Home</a></li>
-                            <li><a href="{{ route('home') }}#layanan" class="hover:underline opacity-90">Layanan</a></li>
-                            <li><a href="{{ route('home') }}#katalog" class="hover:underline opacity-90">Furniture</a></li>
-                            <li><a href="{{ route('home') }}#kontak" class="hover:underline opacity-90">Contact Us</a></li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3 class="font-heading font-bold text-lg mb-4 w-20">Store</h3>
-                        <ul class="space-y-2 text-sm">
-                            <li><a href="{{ route('cart.index') }}" class="hover:underline opacity-90">My Cart</a></li>
-                            <li><a href="{{route('products.index')}}" class="hover:underline opacity-90">E Commerce</a></li>
-                            <li><a href="{{ route('orders.history') }}" class="hover:underline opacity-90">History</a></li>
-                            <li><a href="{{ route('track.order') }}" class="hover:underline opacity-90">Track Order</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="border-t border-white/30 pt-8 flex flex-col md:flex-row justify-between items-center">
-
-                <div class="text-sm opacity-80 mb-4 md:mb-0">
-                    Copyright @ZRFS 2025
-                </div>
-
-                <div class="flex space-x-5 items-center">
-                    <a href="#" class="hover:opacity-75 transition transform hover:scale-110">
-                        <img src="{{ asset('img/icons/instagram.png') }}" alt="IG" class="w-5 h-5 object-contain">
-                    </a>
-                    <a href="#" class="hover:opacity-75 transition transform hover:scale-110">
-                        <img src="{{ asset('img/icons/x.png') }}" alt="X" class="w-5 h-5 object-contain">
-                    </a>
-                    <a href="#" class="hover:opacity-75 transition transform hover:scale-110">
-                        <img src="{{ asset('img/icons/youtube.png') }}" alt="YT" class="w-5 h-5 object-contain">
-                    </a>
-                    <a href="#" class="hover:opacity-75 transition transform hover:scale-110">
-                        <img src="{{ asset('img/icons/mail.png') }}" alt="Mail" class="w-5 h-5 object-contain">
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </footer>
-
-    <!-- Floating Notification -->
-    <x-notification />
-
-</body>
-
-</html>
+@endsection

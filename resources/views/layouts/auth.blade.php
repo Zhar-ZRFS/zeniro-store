@@ -24,24 +24,8 @@
 <body class="antialiased font-sans">
     <img src="{{ asset('img/asset/login.jfif') }}" alt="Background"
         class="fixed inset-0 w-full h-full object-cover -z-10">
-
-    {{--
-    PARENT WRAPPER
-    - items-center: Biar semua konten di tengah secara vertikal.
-    --}}
     <div class="relative min-h-screen w-full flex items-center">
 
-        {{--
-        MAIN CONTAINER (Jantung Keseimbangan)
-        - max-w-screen-xl: Pembatas lebar biar gak mepet ke ujung monitor.
-        - mx-auto: Naruh "kotak" ini tepat di tengah layar.
-        - justify-between: Dorong logo ke kiri, form ke kanan secara otomatis.
-        - px-12 md:px-20: Jarak aman kiri-kanan yang SAMA (Simetris).
-        --}}
-        {{--
-        Ganti 'items-center' jadi 'items-start' biar logo sejajar sama pucuk form.
-        Gue tambahin 'pt-20' (optional) biar mereka nggak nempel banget ke atas layar.
-        --}}
         <div
             class="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start px-12 md:px-35 gap-10">
 

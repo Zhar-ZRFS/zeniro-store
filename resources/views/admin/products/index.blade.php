@@ -179,31 +179,30 @@
     @if($products->hasPages())
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-white rounded-2xl p-6">
             <p class="font-sans text-gray text-sm">
-                <span class="hidden md:inline">Showing {{ $products->firstItem() }} to {{ $products->lastItem() }} of {{ $products->total() }} products</span>
+                <span class="hidden md:block">Showing {{ $products->firstItem() }} to {{ $products->lastItem() }} <br />of {{ $products->total() }} products</span>
                 <span class="md:hidden">{{ $products->firstItem() }}-{{ $products->lastItem() }} of {{ $products->total() }}</span>
             </p>
             <div class="flex items-center gap-2">
                 @if ($products->onFirstPage())
-                    <span class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray cursor-not-allowed">
-                        <span class="hidden md:inline">Previous</span>
-                            <span class="md:hidden">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                                </svg>
-                            </span>
+                    <span class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray cursor-not-allowed flex items-center gap-2">
+                        <span class="hidden md:block">Previous</span>
+                        <span class="md:hidden">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </span>
                     </span>
                 @else
                     <a href="{{ $products->appends(request()->except('page'))->previousPageUrl() }}" 
-                       class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray hover:bg-gray/10 transition">
-                            <span class="hidden md:inline">Previous</span>
-                            <span class="md:hidden">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                                </svg>
-                            </span>
+                       class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray hover:bg-gray/10 transition flex items-center gap-2">
+                        <span class="hidden md:block">Previous</span>
+                        <span class="md:hidden">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </span>
                     </a>
                 @endif
-
                 @foreach($products->getUrlRange(1, $products->lastPage()) as $page => $url)
                     @if($page == $products->currentPage())
                         <span class="px-4 py-2 bg-accent-blue text-white rounded-lg font-sans font-bold">{{ $page }}</span>
@@ -214,30 +213,29 @@
                         </a>
                     @endif
                 @endforeach
-
                 @if ($products->hasMorePages())
                     <a href="{{ $products->appends(request()->except('page'))->nextPageUrl() }}" 
-                       class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray hover:bg-gray/10 transition">
-                            <span class="hidden md:inline">Next</span>
-                            <span class="md:hidden">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                                </svg>
-                            </span>
+                       class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray hover:bg-gray/10 transition flex items-center gap-2">
+                        <span class="hidden md:block">Next</span>
+                        <span class="md:hidden">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </span>
                     </a>
                 @else
-                    <span class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray cursor-not-allowed">
-                        <span class="hidden md:inline">Next</span>
-                            <span class="md:hidden">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                                </svg>
-                            </span>
+                    <span class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray cursor-not-allowed flex items-center gap-2">
+                        <span class="hidden md:block">Next</span>
+                        <span class="md:hidden">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </span>
                     </span>
                 @endif
             </div>
         </div>
-    @endif
+     @endif
 
 </div>
 @endsection
