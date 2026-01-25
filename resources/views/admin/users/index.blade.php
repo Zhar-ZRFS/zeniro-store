@@ -8,7 +8,7 @@
 
         <!-- Stats & Filter -->
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide w-full">
+            <div class="flex gap-3 overflow-x-auto scrollbar-hide">
                 <a href="{{ route('admin.users.index') }}"
                     class="px-3 py-1 text-xs rounded-full font-sans font-bold whitespace-nowrap transition {{ $filter === 'all' ? 'bg-accent-blue text-white' : 'bg-white text-gray hover:bg-accent-blue/40 hover:text-white' }}">
                     All Users ({{ $counts['all'] }})
@@ -68,7 +68,7 @@
         </div>
 
         <!-- Users Table -->
-        <div class="bg-white rounded-2xl overflow-hidden">
+        <div class="bg-white rounded-2xl  overflow-x-auto">
             <table class="w-full">
                 <thead class="bg-primary-primaryBlue">
                     <tr>
@@ -170,19 +170,31 @@
 
         <!-- Pagination -->
         @if($users->hasPages())
-            <div class="flex items-center justify-between bg-white rounded-2xl p-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-white rounded-2xl p-6">
                 <p class="font-sans text-gray text-sm">
-                    Showing {{ $users->firstItem() }} to {{ $users->lastItem() }} of {{ $users->total() }} users
+                    <span class="hidden md:block">Showing {{ $users->firstItem() }} to {{ $users->lastItem() }} <br />of {{ $users->total() }} users</span>
+                    <span class="md:hidden">{{ $users->firstItem() }}-{{ $users->lastItem() }} of {{ $users->total() }}</span>
+                </p>
                 </p>
                 <div class="flex items-center gap-2">
                     @if ($users->onFirstPage())
-                        <span class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray cursor-not-allowed">
-                            Previous
+                        <span class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray cursor-not-allowed flex items-center gap-2">
+                            <span class="hidden md:block">Previous</span>
+                        <span class="md:hidden">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </span>
                         </span>
                     @else
                         <a href="{{ $users->appends(request()->except('page'))->previousPageUrl() }}"
-                            class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray hover:bg-white transition">
-                            Previous
+                            class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray hover:bg-gray/10 transition flex items-center gap-2">
+                            <span class="hidden md:block">Previous</span>
+                        <span class="md:hidden">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </span>
                         </a>
                     @endif
 
@@ -199,12 +211,22 @@
 
                     @if ($users->hasMorePages())
                         <a href="{{ $users->appends(request()->except('page'))->nextPageUrl() }}"
-                            class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray hover:bg-white transition">
-                            Next
+                            class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray hover:bg-gray/10 transition flex items-center gap-2">
+                            <span class="hidden md:block">Next</span>
+                        <span class="md:hidden">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </span>
                         </a>
                     @else
-                        <span class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray cursor-not-allowed">
-                            Next
+                        <span class="px-4 py-2 border border-gray/30 rounded-lg font-sans font-bold text-gray cursor-not-allowed flex items-center gap-2">
+                            <span class="hidden md:block">Next</span>
+                        <span class="md:hidden">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </span>
                         </span>
                     @endif
                 </div>
