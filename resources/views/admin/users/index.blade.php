@@ -7,8 +7,8 @@
     <div class="space-y-6">
 
         <!-- Stats & Filter -->
-        <div class="flex items-center justify-between">
-            <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide w-full">
                 <a href="{{ route('admin.users.index') }}"
                     class="px-3 py-1 text-xs rounded-full font-sans font-bold whitespace-nowrap transition {{ $filter === 'all' ? 'bg-accent-blue text-white' : 'bg-white text-gray hover:bg-accent-blue/40 hover:text-white' }}">
                     All Users ({{ $counts['all'] }})
@@ -32,28 +32,33 @@
             </div>
 
             <!-- Search & Add Button -->
-            <div class="flex items-center gap-3">
-                <form method="GET" class="flex items-center gap-3">
+            <div class="flex flex-col md:flex-row items-stretch md:items-center gap-3 w-full md:w-auto">
+                <form method="GET" class="flex flex-col md:flex-row items-stretch md:items-center gap-3 flex-1 md:flex-none">
                     <input type="hidden" name="filter" value="{{ $filter }}">
-                    <div class="relative">
+                    <div class="relative flex-1 md:flex-none">
                         <input type="text" name="search" value="{{ request('search') }}" placeholder="Search users..."
-                            class="w-55 pl-10 pr-4 py-1.5 text-sm rounded-xl border border-gray/30 focus:outline-none focus:ring-2 focus:ring-accent-blue font-sans">
+                            class="w-full md:w-55 pl-10 pr-4 py-1.5 text-sm rounded-xl border border-gray/30 focus:outline-none focus:ring-2 focus:ring-accent-blue font-sans">
                         <svg class="w-5 h-5 absolute left-3 top-2 text-gray" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </div>
-                    @if(request('search'))
-                        <a href="{{ route('admin.users.index', ['filter' => $filter]) }}"
-                            class="px-4 py-2 bg-gray/20 text-gray rounded-xl hover:bg-gray/30 transition font-sans font-bold">
-                            Clear
-                        </a>
-                    @endif
+                    <div class="flex gap-3 flex-1 md:flex-none">
+                        <button type="submit" class="flex-1 md:flex-none px-4 py-1.5 text-sm bg-accent-blue text-white rounded-xl hover:bg-accent-blue/90 transition font-sans font-bold">
+                            Search
+                        </button>
+                        @if(request('search'))
+                            <a href="{{ route('admin.users.index', ['filter' => $filter]) }}"
+                                class="flex-1 md:flex-none px-4 py-1.5 text-sm bg-gray/20 text-gray rounded-xl hover:bg-gray/30 transition font-sans font-bold text-center">
+                                Clear
+                            </a>
+                        @endif
+                    </div>
                 </form>
 
                 <a href="{{ route('admin.users.create') }}"
-                    class="px-2 py-1.5 text-sm bg-accent-blue text-white rounded-lg hover:bg-accent-blue/90 transition font-sans font-bold flex items-center gap-2">
+                    class="px-2 py-1.5 text-sm bg-accent-blue text-white rounded-lg hover:bg-accent-blue/90 transition font-sans font-bold flex items-center justify-center gap-2 flex-1 md:flex-none">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                     </svg>

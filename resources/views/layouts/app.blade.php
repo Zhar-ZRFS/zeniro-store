@@ -120,7 +120,7 @@
 
                 @if(request()->routeIs('products.index'))
                     <form action="{{ route('products.index') }}" method="GET" 
-                        class="flex items-center rounded-full transition-all duration-300 ease-in-out overflow-hidden bg-transparent"
+                        class="hidden md:flex items-center rounded-full transition-all duration-300 ease-in-out overflow-hidden bg-transparent"
                         :class="searchOpen ? 'w-40 px-2 border border-primary-primaryBlue' : 'w-10.5 justify-center px-0 border-transparent'"
                         @click.away="searchOpen = false">
 
@@ -148,7 +148,7 @@
 
 
                 @auth
-                    <div class="flex items-center gap-4">
+                    <div class="hidden md:flex items-center gap-4">
                         <div class="relative"> <x-profile-dropdown :user="auth()->user()" />
                         
                         @if(isset($cartCount) && $cartCount > 0)
@@ -159,13 +159,13 @@
                     </div>
                         @if(auth()->user()->role === 'admin')
                             <a href="{{ route('admin.dashboard') }}"
-                                class="px-6 py-2 bg-accent-blue text-white rounded-lg font-bold hover:bg-accent-blue/90 transition text-sm">
+                                class="hidden md:block px-6 py-2 bg-accent-blue text-white rounded-lg font-bold hover:bg-accent-blue/90 transition text-sm">
                                 Go to Dashboard
                             </a>
                         @endif
                     </div>
                 @else
-                    <div class="flex items-center gap-3">
+                    <div class="hidden md:flex items-center gap-3">
                         <a href="{{ route('login') }}"
                             class="w-20 h-10 flex items-center justify-center rounded-lg font-bold transition-all duration-300 border-2 border-primary-primaryBlue bg-primary-primaryBlue text-white hover:bg-transparent hover:text-primary-primaryBlue text-sm">
                             Login
@@ -279,6 +279,52 @@
                 @endauth
                     
                     <a href="{{ route('home') }}#kontak" class="block font-heading font-bold text-primary-primaryBlue py-2">Contact Us</a>
+
+                    <!-- Mobile Auth Section -->
+                    <div class="border-t border-gray-300 pt-4 mt-4">
+                        @auth
+                            <div class="space-y-3">
+                                <div class="px-2 py-2 flex items-center justify-between">
+                                    <div>
+                                        <p class="font-heading font-bold text-primary-primaryBlue text-sm">{{ auth()->user()->name }}</p>
+                                        <p class="text-xs text-primary-primaryBlue/60">{{ auth()->user()->email }}</p>
+                                    </div>
+                                    <a href="{{ route('user.profile') }}" 
+                                       class="flex-shrink-0 p-1.5 text-accent-blue hover:bg-accent-blue/10 rounded-lg transition" 
+                                       title="Edit Profile">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                                @if(auth()->user()->role === 'admin')
+                                    <a href="{{ route('admin.dashboard') }}"
+                                        class="block w-full px-4 py-2 bg-accent-blue text-white rounded-lg font-bold hover:bg-accent-blue/90 transition text-sm text-center">
+                                        Go to Dashboard
+                                    </a>
+                                @endif
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="w-full px-4 py-2 border-2 border-primary-primaryBlue text-primary-primaryBlue rounded-lg font-bold hover:bg-primary-primaryBlue hover:text-white transition text-sm">
+                                        Logout
+                                    </button>
+                                </form>
+                            </div>
+                        @else
+                            <div class="flex flex-col gap-2">
+                                <a href="{{ route('login') }}"
+                                    class="w-full h-10 flex items-center justify-center rounded-lg font-bold transition-all duration-300 border-2 border-primary-primaryBlue bg-primary-primaryBlue text-white hover:bg-transparent hover:text-primary-primaryBlue text-sm">
+                                    Login
+                                </a>
+
+                                <a href="{{ route('register') }}"
+                                    class="w-full h-10 flex items-center justify-center rounded-lg font-bold transition-all duration-300 border-2 border-primary-primaryBlue bg-transparent text-primary-primaryBlue hover:bg-primary-primaryBlue hover:text-white text-sm">
+                                    Sign Up
+                                </a>
+                            </div>
+                        @endauth
+                    </div>
 
                 </div>
 

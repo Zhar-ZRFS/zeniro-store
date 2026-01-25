@@ -50,46 +50,48 @@
                 <div id="cartItemsContainer" class="space-y-4">
                     @forelse($cartItems as $item)
                         <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200" data-cart-id="{{ $item->id }}" data-price="{{ $item->price }}" data-quantity="{{ $item->quantity }}">
-                            <div class="flex items-center gap-4">
+                            <div class="flex flex-col md:flex-row items-start md:items-center gap-4">
                                 <!-- Checkbox -->
                                 <input type="checkbox" 
-                                       class="cart-checkbox w-5 h-5 rounded border-2 border-blue-700 checked:bg-blue-700"
+                                       class="cart-checkbox w-5 h-5 rounded border-2 border-blue-700 checked:bg-blue-700 flex-shrink-0"
                                        value="{{ $item->id }}"
                                        onchange="updateCheckoutSummary()">
                                 
                                 <!-- Product Image -->
-                                <div class="w-24 h-24 bg-accent-blue rounded-xl flex-shrink-0">
+                                <div class="w-24 md:w-full md:h-24 h-24 bg-accent-blue rounded-xl flex-shrink-0">
                                     @if($item->product->image)
                                         <img src="{{ asset('storage/' . $item->product->image) }}" 
                                              alt="{{ $item->product->name }}"
-                                             class="w-full h-full object-cover rounded-xl">
+                                             class="w-24 h-24 object-cover rounded-xl">
                                     @endif
                                 </div>
 
                                 <!-- Product Info -->
-                                <div class="flex-1">
+                                <div class="flex-1 w-full">
                                     <h3 class="font-bold text-lg text-gray-800">{{ $item->product->name }}</h3>
                                     <p class="text-sm text-gray-600 mt-1">{{ $item->product->description }}</p>
                                     <p class="font-bold text-gray-800 mt-2">Rp {{ number_format($item->price, 0, ',', '.') }}</p>
                                 </div>
 
                                 <!-- Quantity Controls -->
-                                <div class="flex items-center gap-2">
-                                    <button onclick="updateQuantity({{ $item->id }}, -1)" 
-                                            class="w-8 h-8 bg-accent-blue text-white rounded-l-lg hover:bg-accent-blue/30 transition font-bold">
-                                        −
-                                    </button>
-                                    <span class="w-12 text-center font-bold" id="quantity-{{ $item->id }}">{{ $item->quantity }}</span>
-                                    <button onclick="updateQuantity({{ $item->id }}, 1)" 
-                                            class="w-8 h-8 bg-accent-blue text-white rounded-r-lg hover:bg-accent-blue/30 transition font-bold">
-                                        +
-                                    </button>
-                                    <form action="{{ route('cart.remove', $item->id) }}" method="POST" class="inline">
+                                <div class="flex flex-col md:flex-row items-center gap-2 w-full md:w-auto">
+                                    <div class="flex items-center gap-2 flex-1 md:flex-none">
+                                        <button onclick="updateQuantity({{ $item->id }}, -1)" 
+                                                class="w-8 h-8 bg-accent-blue text-white rounded-l-lg hover:bg-accent-blue/30 transition font-bold">
+                                            −
+                                        </button>
+                                        <span class="w-12 text-center font-bold" id="quantity-{{ $item->id }}">{{ $item->quantity }}</span>
+                                        <button onclick="updateQuantity({{ $item->id }}, 1)" 
+                                                class="w-8 h-8 bg-accent-blue text-white rounded-r-lg hover:bg-accent-blue/30 transition font-bold">
+                                            +
+                                        </button>
+                                    </div>
+                                    <form action="{{ route('cart.remove', $item->id) }}" method="POST" class="inline flex-1 md:flex-none">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" 
-                                                class="w-6 h-6 text-red-500 rounded-lg hover:text-red-700 hover:bg-red-50 transition ml-2 flex items-center justify-center">
-                                            <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                class="w-full md:w-6 md:h-6 text-red-500 rounded-lg hover:text-red-700 hover:bg-red-50 transition flex items-center justify-center py-2 md:py-0">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                             </svg>
                                         </button>

@@ -34,7 +34,7 @@
                                                                             'pengiriman': {
                                                                                 title: 'Pengiriman Cepat',
                                                                                 desc: 'Kecepatan adalah bentuk penghormatan kami terhadap waktu Anda. Nikmati sistem pengiriman yang presisi dan terjadwal, memastikan setiap kurasi ZENIRO tiba di ruang hunian Anda tanpa cela, tepat saat Anda membutuhkannya.',
-                                                                                icon: '{{ asset('img/icons/pengiriman.png') }}'
+                                                                                icon: '{{ asset('img/icons/Pengiriman.png') }}'
                                                                             },
                                                                             'konsultasi': {
                                                                                 title: 'Home Decor Consultation',
@@ -290,7 +290,7 @@
     <section id="kontak" class="py-20 md:py-24 flex items-center justify-center min-h-screen"
         style="background-color: #D7EBF7;">
 
-        <div class="w-full mx-auto px-24">
+        <div class="w-full mx-auto px-6 md:px-24">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
 
                 <div class="bg-white rounded-[20px] p-8 md:p-12 shadow-xl">
